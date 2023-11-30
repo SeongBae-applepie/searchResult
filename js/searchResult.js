@@ -4,6 +4,7 @@ import { getMovieInfo } from './api/movieApi.js';
 const title = document.querySelector('.movie-title');
 const titleEng = document.querySelector('.sub-movie-title');
 const poster = document.querySelector('.poster-card');
+const stll = document.querySelector('.stll-card');
 const release = document.querySelector('.release');
 const director = document.querySelector('.director');
 const actor = document.querySelector('.actor');
@@ -11,7 +12,6 @@ const genre = document.querySelector('.genre');
 const runtime = document.querySelector('.runtime');
 const rating = document.querySelector('.rating');
 const summary = document.querySelector('.movie-summary>dd');
-const postReview = document.querySelector('.container-review-btn>button');
 
 /*현재 페이지의 URL에서 movieId와 movieSeq 파라미터 값 가져오기
 여러 페이지 간 정보 전달하거나 특정 영화에 대한 추가 데이터 요청*/
@@ -25,11 +25,6 @@ const movieId = params.get('movieId');
 const movieSeq = params.get('movieSeq');
 const loading = document.querySelector('.wrapper-etc');
 
-//리뷰 작성 버튼 이벤트 리스너
-//클릭 시 해당 영화의 평점 작성 페이지로 이동
-postReview.addEventListener('click', () => {
-    window.location.href = `../pages/writePost.html?movieId=${movieId}&movieSeq=${movieSeq}`;
-});
 
 //페이지 로드 -> 이벤트 리스너 추가
 window.addEventListener('load', async () => {
@@ -53,8 +48,6 @@ window.addEventListener('load', async () => {
         showValue(movieInfo);
     }
 
-    //로딩 나타내는 요소에 클래스 추가해 로딩 숨기기
-    loading.classList.add('disabled');
 });
 
 //함수 영화 정보 받아와 해당 정보를 화면에 표시
@@ -73,7 +66,14 @@ const showValue = (movie) => {
     if (movie.posters !== '') {
         poster.src = movie.posters.substring(0, 60);
     } else {
-        poster.src = '../assets/images/post_default.jpg';
+        poster.src = '../../redlogo.png';
+    }
+
+    //스틸컷 설정
+    if (movie.stlls !== '') {
+        stll.src = movie.stlls.substring(0, 65);
+    } else {
+        stll.src = '../../redlogo.png';
     }
 
     //개봉일

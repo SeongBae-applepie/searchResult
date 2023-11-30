@@ -5,6 +5,7 @@ const searchInput = document.getElementById('input-search');
 const searchedList = document.querySelector('.container-searched-list');
 const gridBox = document.querySelector('.grid-box');
 const strong = document.querySelector('strong');
+const searchButton = document.getElementById('search-button');
 
 //검색 쿼리 저장 객체 생성
 let queryObj = {
@@ -48,6 +49,15 @@ async function search(searchInputValue, startCount = 0) {
         createObserver(gridBox.lastElementChild);
     }
 }
+
+searchInput === null || searchInput === void 0
+    ? void 0
+    : searchButton.addEventListener('click', () => {
+        // 검색어가 빈 문자열이 아닌 경우(유효) 함수 호출
+        if (searchInput.value !== '' && searchInput.value.trim() !== '') {
+            search(searchInput.value);
+        }
+    });
 
 //검색 결과 받아와 화면에 표시하는 함수
 const createSearchedList = (list, compare) => {
@@ -130,7 +140,7 @@ const createSearchedList = (list, compare) => {
                 orderedResult[i].posters.substring(0, 60)
             );
         } else {//비어있으면 기본 포스터 이미지
-            posterImg.setAttribute('src', '../assets/images/post_default.jpg');
+            posterImg.setAttribute('src', '../../redlogo.png');
         }
 
         //생성된 요소에 클래스 추가

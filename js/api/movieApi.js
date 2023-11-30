@@ -3,7 +3,6 @@ const serviceKey = 'SN8H400BBH563TC18O85';
 // 한국 영화 자료원 API
 const MOVIE_URL = `https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${serviceKey}`;
 
-
 // 영화 정보 얻어오는 함수(개별 영화 정보)
 const getMovieInfo = async (queryObj) => {
     let queryString = '';
